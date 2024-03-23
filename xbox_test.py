@@ -1,17 +1,10 @@
 from pybricks.hubs import TechnicHub
-from pybricks.pupdevices import Motor
-from pybricks.parameters import Button, Color, Direction, Port, Side, Stop
-from pybricks.robotics import DriveBase
-from pybricks.tools import wait, StopWatch
+from pybricks.parameters import Color
+from pybricks.tools import wait
 from pybricks.iodevices import XboxController
 
 hub = TechnicHub()
 controller = XboxController()
-
-print(controller.joystick_left())
-print(controller.joystick_right())
-print(controller.dpad())
-print(controller.triggers())
 
 def inputPressed():
     return controller.buttons.pressed() != set() or controller.dpad() != 0 or controller.joystick_left() != (0, 0) or controller.joystick_right() != (0, 0) or controller.triggers() != (0, 0)
@@ -28,8 +21,6 @@ while(True):
     stick1 = controller.joystick_left()
     stick2 = controller.joystick_right()
     triggers = controller.triggers()
-
-    print(stick1)
 
     if(dpad != 0):
         hub.light.on(Color.ORANGE)
@@ -62,4 +53,5 @@ while(True):
             intensity = abs(triggers[1]) / 100
             print(intensity)
             hub.light.on(Color.RED * intensity)
+            
     wait(10)
